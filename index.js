@@ -16,10 +16,22 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
+
+// Use express-session to manage session data
+app.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: false
+}));
+
 // Passport middleware
 app.use(passport.initialize());
+app.use(passport.session());
 
 // Passport config
+require('./config/passport')(passport);
+
+
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +45,9 @@ server.applyMiddleware({ app });
 app.use(cheerio());
 
 // Use routes
+app.post("/login", passport.authenticate("local"), (req, res) => {
+  res.send("You are logged in!");
+});
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/profiles', require('./routes/api/profiles'));
 
