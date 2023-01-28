@@ -1,0 +1,21 @@
+version: '3'
+services:
+  green-data-harvester:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: "mongodb://mongo:27017/green-data-harvester"
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

@@ -1,0 +1,30 @@
+{
+    "name": "GreenDataHarvester",
+    "version": "1.0.0",
+    "description": "A data harvesting tool using web scraping and natural language processing",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "test": "mocha"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "apollo-server-express": "^2.9.3",
+      "cheerio": "^1.0.0-rc.3",
+      "express": "^4.17.1",
+      "mongoose": "^5.9.4",
+      "passport": "^0.4.1",
+      "passport-jwt": "^4.0.0",
+      "passport-local": "^1.0.0",
+      "request": "^2.88.2",
+      "request-promise": "^4.2.5",
+      "request-promise-native": "^1.0.8",
+      "requestretry": "^1.12.2"
+    },
+    "devDependencies": {
+      "chai": "^4.2.0",
+      "mocha": "^6.2.2",
+      "nodemon": "^2.0.2"
+    }
+  }
