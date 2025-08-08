@@ -1,48 +1,49 @@
 # GreenDataHarvester
 GreenDataHarvester is a project that aims to extract ecological and social data from a list of data sources. The first version will focus on French data, while the second version will expand to global data.
 
+## Architecture
+* **Server** – Express application exposing both REST and GraphQL endpoints.
+* **Database** – MongoDB accessed through Mongoose.
+* **Authentication** – Passport.js with a basic local strategy.
+* **Front-end** – React application (see `/client`) consuming the GraphQL API.
+
 ## Features
-Extract ecological and social data from various sources
-API for data retrieval, available via REST and GraphQL
-User management system using Passport.js
-Data storage and management using MongoDB and Mongoose
-Data extraction using CheerioJS
-## Tech stack
-- Express.js
-- Apollo
-- MongoDB
-- Mongoose
-- Passport.js
-- CheerioJS
+* Minimal GraphQL API with a `ping` query.
+* Sample user and profile routes.
+* Passport-ready user model with password hashing.
+* Docker environment for local development.
+
 ## Installation
-The project uses docker-compose for easy installation and setup. Simply run docker-compose up to start the project.
+```bash
+docker-compose up --build
+```
+The server will run on `http://localhost:5000` and the front-end in `/client` can be started with `npm run dev`.
 
-## Dependencies
-- Node.js
-- Docker
+## Potential Data Domains
+To enrich the dataset, consider integrating the following public French data sources:
+
+| Domain | Source |
+|-------|--------|
+| Population statistics | [INSEE](https://www.insee.fr/)
+| Parliamentary activity | [Assemblée Nationale votes](https://data.assemblee-nationale.fr/)
+| Environmental data | [data.gouv.fr](https://www.data.gouv.fr/) – air quality, energy, waste
+| Transportation | Open transport networks (SNCF, GTFS feeds)
+| Health | Santé publique France datasets
+
+Add new collectors under `src/sources/<domain>` following the existing INSEE and Assemblée examples.
+
 ## Contributing
-We use the standard git workflow for contributions. Please follow these steps:
+1. Fork the repository
+2. Create a branch `feature/your-feature-name` or `fix/your-fix-name`
+3. Commit your changes
+4. Open a Pull Request
 
-## Fork the repository
-1. Create a new branch named feature/your-feature-name for bugfixes use fix/your-fix-name
-2. Make your changes and commit them
-3. Push the branch to your forked repository
-4. Create a new Pull Request
-We use the following branch naming convention:
-
-- feature/your-feature-name for new features
-- fix/your-fix-name for bugfixes
 ## License
-The project is licensed under the MIT License.
+MIT
 
 ## Authors
 - charlie-lucas as main author
 - ChatGPT as contributor
-## Acknowledgments
-- Express.js for the web framework
-- Apollo for GraphQL support
-- MongoDB and Mongoose for data storage and management
-- Passport.js for user management
-- CheerioJS for data extraction
-# Disclaimer
+
+## Disclaimer
 This project is currently under development and should not be used in production environments without proper testing and modification.

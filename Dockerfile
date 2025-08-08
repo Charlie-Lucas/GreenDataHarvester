@@ -8,16 +8,16 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code to the container
 COPY . .
 
-# Install passport.js
-RUN npm install passport
+# Set environment
+ENV NODE_ENV=production
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 5000
 
 # Start the application
 CMD [ "npm", "start" ]
