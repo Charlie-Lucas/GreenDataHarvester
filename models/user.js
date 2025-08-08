@@ -37,20 +37,8 @@ userSchema.pre('save', function(next) {
   });
 });
 
-userSchema.methods.comparePassword = function(candidatePassword) {
-  return new Promise((resolve, reject) => {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-      if (err) {
-        return reject(err);
-      }
-
-      if (!isMatch) {
-        return reject(false);
-      }
-
-      resolve(true);
-    });
-  });
+userSchema.methods.validatePassword = function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
-mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

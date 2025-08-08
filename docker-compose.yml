@@ -3,7 +3,7 @@ services:
   green-data-harvester:
     build: .
     ports:
-      - "3000:3000"
+      - "5000:5000"
     environment:
       MONGO_URL: "mongodb://mongo:27017/green-data-harvester"
     depends_on:

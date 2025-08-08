@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cheerio = require('cheerio');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
 
 const app = express();
 
@@ -18,11 +20,13 @@ mongoose
 
 
 // Use express-session to manage session data
-app.use(session({
-  secret: "keyboard cat",
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 // Passport middleware
 app.use(passport.initialize());
@@ -38,11 +42,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // GraphQL
-const server = new ApolloServer({});
+const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
-
-// Cheerio
-app.use(cheerio());
 
 // Use routes
 app.post("/login", passport.authenticate("local"), (req, res) => {
