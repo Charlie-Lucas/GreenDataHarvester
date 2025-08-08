@@ -1,0 +1,46 @@
+{
+  "tasks": {
+    "sirene": {
+      "enabled": true,
+      "cron": "0 2 * * *",
+      "description": "Harvest INSEE SIRENE data daily at 2 AM",
+      "retryOnFailure": true,
+      "maxRetries": 3
+    },
+    "bdm": {
+      "enabled": true,
+      "cron": "0 3 * * *",
+      "description": "Harvest INSEE BDM data daily at 3 AM",
+      "retryOnFailure": true,
+      "maxRetries": 3
+    },
+    "donneesLocales": {
+      "enabled": true,
+      "cron": "0 4 * * 0",
+      "description": "Harvest INSEE Données Locales weekly on Sunday at 4 AM",
+      "retryOnFailure": true,
+      "maxRetries": 3
+    },
+    "healthCheck": {
+      "enabled": true,
+      "cron": "*/15 * * * *",
+      "description": "Check source health every 15 minutes",
+      "retryOnFailure": false,
+      "maxRetries": 1
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "channels": {
+      "email": {
+        "enabled": false,
+        "recipients": []
+      },
+      "webhook": {
+        "enabled": false,
+        "url": ""
+      }
+    }
+  }
+}
+

@@ -1,0 +1,46 @@
+{
+  "enabled": true,
+  "checkInterval": 900,
+  "maxDataSize": 10,
+  "endpoints": {
+    "sirene": {
+      "url": "/entreprises/sirene/V3/siret?q=dateCreationEtablissement:2024-01-01&nombre=1",
+      "method": "GET",
+      "expectedStatus": 200,
+      "timeout": 10000
+    },
+    "bdm": {
+      "url": "/series/BDM/V1/data/SERIES_BDM/000001",
+      "method": "GET",
+      "expectedStatus": 200,
+      "timeout": 10000
+    },
+    "donneesLocales": {
+      "url": "/donnees-locales/V0.1/geo/commune/75056",
+      "method": "GET",
+      "expectedStatus": 200,
+      "timeout": 10000
+    }
+  },
+  "storage": {
+    "collection": "source_health_checks",
+    "ttl": 86400,
+    "fields": {
+      "source": "string",
+      "status": "string",
+      "responseTime": "number",
+      "lastCheck": "date",
+      "error": "string",
+      "dataSample": "object"
+    }
+  },
+  "alerts": {
+    "enabled": true,
+    "thresholds": {
+      "responseTime": 5000,
+      "errorRate": 0.1,
+      "consecutiveFailures": 3
+    }
+  }
+}
+

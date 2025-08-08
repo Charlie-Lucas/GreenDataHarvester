@@ -1,34 +1,54 @@
 {
     "name": "GreenDataHarvester",
-    "version": "1.0.0",
-    "description": "A data harvesting tool using web scraping and natural language processing",
+    "version": "2.0.0",
+    "description": "A modern data harvesting tool for INSEE and other French data sources",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "start": "node index.js",
-        "test": "mocha"
+        "dev": "nodemon index.js",
+        "setup": "node scripts/setup.js",
+        "test": "mocha --experimental-modules --require @babel/register",
+        "test:watch": "mocha --experimental-modules --require @babel/register --watch",
+        "test:coverage": "nyc mocha --experimental-modules --require @babel/register",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "build": "npm run build:client",
+        "build:client": "cd client && npm run build"
     },
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "apollo-server-express": "^2.9.3",
-        "axios": "^1.6.0",
-        "cheerio": "^1.0.0-rc.3",
-        "express": "^4.17.1",
+        "@apollo/server": "^4.9.5",
+        "apollo-server-express": "^3.12.1",
+        "axios": "^1.6.2",
+        "cheerio": "^1.0.0-rc.12",
+        "express": "^4.18.2",
         "express-session": "^1.17.3",
-        "graphql": "^14.7.0",
-        "mongoose": "^5.9.4",
-        "passport": "^0.4.1",
-        "passport-jwt": "^4.0.0",
+        "graphql": "^16.8.1",
+        "mongoose": "^8.0.3",
+        "passport": "^0.7.0",
+        "passport-jwt": "^4.0.1",
         "passport-local": "^1.0.0",
-        "request": "^2.88.2",
-        "request-promise": "^4.2.5",
-        "request-promise-native": "^1.0.8",
-        "requestretry": "^1.12.2"
+        "dotenv": "^16.3.1",
+        "joi": "^17.11.0",
+        "winston": "^3.11.0",
+        "node-cron": "^3.0.3",
+        "redis": "^4.6.11"
     },
     "devDependencies": {
-        "chai": "^4.2.0",
-        "mocha": "^6.2.2",
-        "nock": "^14.0.9",
-        "nodemon": "^2.0.2"
+        "@babel/core": "^7.23.6",
+        "@babel/register": "^7.22.15",
+        "chai": "^4.3.10",
+        "mocha": "^10.2.0",
+        "nock": "^13.4.0",
+        "nodemon": "^3.0.2",
+        "nyc": "^15.1.0",
+        "eslint": "^8.55.0",
+        "sinon": "^17.0.1",
+        "supertest": "^6.3.3"
+    },
+    "engines": {
+        "node": ">=18.0.0"
     }
 }

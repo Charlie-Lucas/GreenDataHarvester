@@ -1,0 +1,64 @@
+{
+  "strategies": {
+    "primary": "mongo",
+    "secondary": "redis"
+  },
+  "collections": {
+    "sirene": {
+      "name": "insee_sirene",
+      "indexes": [
+        {
+          "fields": { "siret": 1 },
+          "unique": true
+        },
+        {
+          "fields": { "siren": 1 }
+        },
+        {
+          "fields": { "dateCreationEtablissement": 1 }
+        },
+        {
+          "fields": { "codeCommuneEtablissement": 1 }
+        }
+      ],
+      "ttl": 86400
+    },
+    "bdm": {
+      "name": "insee_bdm",
+      "indexes": [
+        {
+          "fields": { "idBank": 1 },
+          "unique": true
+        },
+        {
+          "fields": { "date": 1 }
+        },
+        {
+          "fields": { "frequence": 1 }
+        }
+      ],
+      "ttl": 3600
+    },
+    "donneesLocales": {
+      "name": "insee_donnees_locales",
+      "indexes": [
+        {
+          "fields": { "codeGeo": 1 }
+        },
+        {
+          "fields": { "date": 1 }
+        },
+        {
+          "fields": { "indicateur": 1 }
+        }
+      ],
+      "ttl": 7200
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 1800,
+    "maxSize": 1000
+  }
+}
+

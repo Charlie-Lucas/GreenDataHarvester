@@ -1,0 +1,83 @@
+{
+  "app": {
+    "name": "GreenDataHarvester",
+    "version": "2.0.0",
+    "environment": "development"
+  },
+  "server": {
+    "port": 3000,
+    "host": "localhost",
+    "cors": {
+      "origin": ["http://localhost:3000", "http://localhost:5173"],
+      "credentials": true
+    }
+  },
+  "database": {
+    "mongo": {
+      "url": "mongodb://localhost:27017/greendataharvester",
+      "options": {
+        "useNewUrlParser": true,
+        "useUnifiedTopology": true
+      }
+    },
+    "redis": {
+      "url": "redis://localhost:6379",
+      "options": {
+        "retryDelayOnFailover": 100,
+        "maxRetriesPerRequest": 3
+      }
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "transports": {
+      "file": {
+        "enabled": true,
+        "filename": "logs/app.log",
+        "maxsize": 10485760,
+        "maxFiles": 5
+      },
+      "console": {
+        "enabled": true,
+        "colorize": true
+      }
+    }
+  },
+  "security": {
+    "session": {
+      "secret": "your-session-secret",
+      "resave": false,
+      "saveUninitialized": false,
+      "cookie": {
+        "secure": false,
+        "maxAge": 24 * 60 * 60 * 1000
+      }
+    },
+    "jwt": {
+      "secret": "your-jwt-secret",
+      "expiresIn": "24h"
+    }
+  },
+  "retry": {
+    "maxAttempts": 3,
+    "baseDelay": 1000,
+    "maxDelay": 10000,
+    "backoffMultiplier": 2
+  },
+  "cache": {
+    "defaultTTL": 3600,
+    "maxSize": 1000
+  },
+  "monitoring": {
+    "healthCheck": {
+      "enabled": true,
+      "interval": 30000
+    },
+    "metrics": {
+      "enabled": true,
+      "port": 9090
+    }
+  }
+}
+

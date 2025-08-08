@@ -1,0 +1,39 @@
+{
+  "baseUrl": "https://api.insee.fr",
+  "authentication": {
+    "type": "bearer",
+    "token": "${INSEE_API_TOKEN}"
+  },
+  "rateLimit": {
+    "requestsPerMinute": 30,
+    "requestsPerHour": 1000
+  },
+  "timeout": {
+    "request": 30000,
+    "response": 30000
+  },
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "User-Agent": "GreenDataHarvester/2.0.0"
+  },
+  "endpoints": {
+    "sirene": {
+      "base": "/entreprises/sirene/V3",
+      "siret": "/siret",
+      "siren": "/siren",
+      "unitesLegales": "/unitesLegales"
+    },
+    "bdm": {
+      "base": "/series/BDM/V1",
+      "data": "/data",
+      "metadata": "/metadata"
+    },
+    "donneesLocales": {
+      "base": "/donnees-locales/V0.1",
+      "geo": "/geo",
+      "data": "/data"
+    }
+  }
+}
+

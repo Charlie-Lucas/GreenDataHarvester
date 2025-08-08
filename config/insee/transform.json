@@ -1,0 +1,98 @@
+{
+  "rules": {
+    "date": {
+      "enabled": true,
+      "formats": ["YYYY-MM-DD", "DD/MM/YYYY", "YYYY-MM-DDTHH:mm:ss.SSSZ"]
+    },
+    "enum": {
+      "enabled": true,
+      "caseSensitive": false
+    },
+    "number": {
+      "enabled": true,
+      "decimalSeparator": ".",
+      "thousandsSeparator": " "
+    },
+    "boolean": {
+      "enabled": true,
+      "trueValues": ["true", "1", "oui", "yes"],
+      "falseValues": ["false", "0", "non", "no"]
+    },
+    "string": {
+      "enabled": true,
+      "trim": true,
+      "normalize": true
+    },
+    "array": {
+      "enabled": true,
+      "removeEmpty": true
+    }
+  },
+  "sirene": {
+    "fields": {
+      "siret": {
+        "type": "string",
+        "required": true,
+        "validation": "^[0-9]{14}$"
+      },
+      "siren": {
+        "type": "string",
+        "required": true,
+        "validation": "^[0-9]{9}$"
+      },
+      "dateCreationEtablissement": {
+        "type": "date",
+        "format": "YYYY-MM-DD"
+      },
+      "codeCommuneEtablissement": {
+        "type": "string",
+        "validation": "^[0-9]{5}$"
+      },
+      "activitePrincipaleEtablissement": {
+        "type": "string",
+        "validation": "^[0-9]{2,6}\\.[0-9]{1,2}[A-Z]$"
+      }
+    }
+  },
+  "bdm": {
+    "fields": {
+      "idBank": {
+        "type": "string",
+        "required": true
+      },
+      "date": {
+        "type": "date",
+        "format": "YYYY-MM-DD"
+      },
+      "valeur": {
+        "type": "number",
+        "precision": 4
+      },
+      "frequence": {
+        "type": "enum",
+        "values": ["A", "M", "T", "S"]
+      }
+    }
+  },
+  "donneesLocales": {
+    "fields": {
+      "codeGeo": {
+        "type": "string",
+        "required": true
+      },
+      "date": {
+        "type": "date",
+        "format": "YYYY-MM-DD"
+      },
+      "indicateur": {
+        "type": "string",
+        "required": true
+      },
+      "valeur": {
+        "type": "number",
+        "precision": 2
+      }
+    }
+  }
+}
+
