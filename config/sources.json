@@ -1,0 +1,13 @@
+[
+  {
+    "name": "assemblee",
+    "connector": "assemblee",
+    "endpoint": "http://example.com/assemblee"
+  },
+  {
+    "name": "insee",
+    "connector": "insee",
+    "endpoint": "http://example.com/insee",
+    "token": "token"
+  }
+]
